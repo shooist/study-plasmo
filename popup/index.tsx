@@ -1,25 +1,40 @@
-import { useStorage } from "@plasmohq/storage/hook"
+import { useState } from "react"
+
+import { sendToBackground } from "@plasmohq/messaging"
 
 function IndexPopup() {
-  const [openCount] = useStorage<number>("open-count", (storedCount) =>
-    typeof storedCount === "undefined" ? 0 : storedCount + 1
-  )
-
-  const [checked, setChecked] = useStorage("checked", true)
+  const [posts, setPosts] = useState([])
 
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "column",
-        padding: 16
+        width: "300px",
+        height: "300px"
       }}>
-      <p>Times opened: {openCount}</p>
-      <input
-        type={"checkbox"}
-        checked={checked}
-        onChange={(e) => setChecked(e.target.checked)}
-      />
+      <button
+        onClick={async () => {
+          const res = await sendToBackground({
+            name: "posts"
+          })
+          setPosts(res.posts)
+        }}>
+        Get posts
+      </button>
+
+      {posts.length > 0 && (
+        <div>
+          {posts.map((post) => (
+            <div
+              key={post.id}
+              style={{
+                marginTop: "20px"
+              }}>
+              <div>{post.title}</div>
+              <div>{post.body}</div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

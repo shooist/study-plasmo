@@ -1017,6 +1017,11 @@
   "resolved" "https://registry.npmjs.org/@plasmohq/init/-/init-0.6.0.tgz"
   "version" "0.6.0"
 
+"@plasmohq/messaging@^0.1.6":
+  "integrity" "sha512-GYryyzijju3dg3RwMGoEIuGct0vgxdBfxZH/54GPh7ZbjYvOVikyfLp7Rn9rsrGqXLdsJ8+YeHUCgQEPvBJakA=="
+  "resolved" "https://registry.npmjs.org/@plasmohq/messaging/-/messaging-0.1.6.tgz"
+  "version" "0.1.6"
+
 "@plasmohq/parcel-bundler@0.4.6":
   "integrity" "sha512-R78/uzpMm1tVw4cQvbsLsrbrs7S+kIl6GcqJ9p2xzB1kyaSwq8A7Lk/jnt+btctcB5Bcxt7NXiLLJ5/DPNTNDA=="
   "resolved" "https://registry.npmjs.org/@plasmohq/parcel-bundler/-/parcel-bundler-0.4.6.tgz"
