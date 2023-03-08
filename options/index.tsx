@@ -1,14 +1,22 @@
-import { useState } from "react"
+import { useStorage } from "@plasmohq/storage/hook"
 
-function OptionsIndex() {
-  const [data, setData] = useState("")
+function IndexOptions() {
+  const [openCount] = useStorage<number>("open-count")
+
+  const [checked] = useStorage("checked")
+  console.log("option checked", checked)
 
   return (
-    <div>
-      <h1>This is the Option UI page!</h1>
-      <input onChange={(e) => setData(e.target.value)} value={data} />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        padding: 16
+      }}>
+      <p>Times opened: {openCount}</p>
+      <input type={"checkbox"} readOnly checked={checked} />
     </div>
   )
 }
 
-export default OptionsIndex
+export default IndexOptions

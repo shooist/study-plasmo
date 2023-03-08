@@ -1,8 +1,11 @@
-import image from "data-base64:~assets/img/car_taxi_black.png"
-import { useState } from "react"
+import { useStorage } from "@plasmohq/storage/hook"
 
 function IndexPopup() {
-  const [data, setData] = useState("")
+  const [openCount] = useStorage<number>("open-count", (storedCount) =>
+    typeof storedCount === "undefined" ? 0 : storedCount + 1
+  )
+
+  const [checked, setChecked] = useStorage("checked", true)
 
   return (
     <div
@@ -11,18 +14,12 @@ function IndexPopup() {
         flexDirection: "column",
         padding: 16
       }}>
-      <h2>
-        Welcome to your{" "}
-        <a href="https://www.plasmo.com" target="_blank">
-          Plasmo
-        </a>{" "}
-        Extension!hoge!
-      </h2>
-      <img src={image} alt="hogehoge" />
-      <input onChange={(e) => setData(e.target.value)} value={data} />
-      <a href="https://docs.plasmo.com" target="_blank">
-        View Docs
-      </a>
+      <p>Times opened: {openCount}</p>
+      <input
+        type={"checkbox"}
+        checked={checked}
+        onChange={(e) => setChecked(e.target.checked)}
+      />
     </div>
   )
 }
